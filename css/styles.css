@@ -1,0 +1,648 @@
+/* ==========================================================================
+   Md. Samiul Alim — Academic Portfolio
+   Single-column, text-forward academic layout.
+   ========================================================================== */
+
+:root {
+    --text: #1f1f1f;
+    --muted: #555555;
+    --heading: #272727;
+    --accent: #8b0000;          /* venue names, stats box, tags */
+    --accent-soft: #fdf6f0;     /* stats inner boxes */
+    --link-line: #228b22;       /* link underline and hover */
+    --rule: rgba(0, 0, 0, 0.1);
+    --panel: #f8f8f8;
+    --font: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+}
+
+/* Base ------------------------------------------------------------------- */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--text);
+    background: #ffffff;
+    -webkit-font-smoothing: antialiased;
+}
+
+b, strong {
+    font-weight: 700;
+}
+
+a {
+    color: #000000;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--link-line);
+}
+
+a:hover {
+    color: var(--link-line);
+    text-decoration-color: var(--link-line);
+}
+
+a.plain {
+    text-decoration: none;
+}
+
+/* Highlighted link in the site's red accent */
+a.link-red {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+}
+
+a.link-red:hover {
+    color: var(--link-line);
+    text-decoration-color: var(--link-line);
+}
+
+/* Links inside coloured tag pills keep the pill's text colour */
+.tag-btn a,
+.tag-btn a:hover {
+    color: inherit;
+    text-decoration-color: currentColor;
+}
+
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid var(--rule);
+    margin: 0 0 0.9rem 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+p {
+    margin: 0.35rem 0;
+}
+
+h2 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--heading);
+    margin: 2.3rem 0 0.35rem 0;
+    line-height: 1.3;
+}
+
+h2 a {
+    text-decoration: none;
+}
+
+h2.hidden-header {
+    position: relative;
+    width: 100%;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 1.4rem 0 0.3rem 0;
+}
+
+h4 {
+    margin: 0 0 0.5rem 0;
+}
+
+ul, ol {
+    margin: 0.3rem 0;
+    padding: 0 0 0 1.35rem;
+}
+
+li {
+    margin: 0.2rem 0;
+}
+
+li > ul, li > ol {
+    margin-top: 0.15rem;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.92em;
+}
+
+/* Layout ----------------------------------------------------------------- */
+.wrapper {
+    min-height: 100%;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header / navigation ---------------------------------------------------- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    padding: 44px 20px 22px;
+}
+
+.brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--heading);
+    text-decoration: none;
+    line-height: 1.15;
+}
+
+.author-name:hover {
+    color: var(--heading);
+    text-decoration: none;
+}
+
+.author-tagline {
+    font-size: 11pt;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.navbar-ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 1.4rem;
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+}
+
+.navbar-ul a {
+    text-decoration: none;
+}
+
+.navbar-ul a:hover {
+    text-decoration: underline;
+}
+
+.navbar-ul a.current {
+    font-weight: 700;
+}
+
+.navbar + hr {
+    margin-bottom: 1.2rem;
+}
+
+/* Career summary --------------------------------------------------------- */
+.profile-picture {
+    float: right;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    margin: 0 0 20px 24px;
+    border: 1px solid var(--rule);
+}
+
+/* Head-and-shoulders crop of the full-length photo: enlarge and offset within the circle. */
+.profile-picture img {
+    position: absolute;
+    width: 160%;
+    max-width: none;
+    left: -27%;
+    top: -45%;
+}
+
+.directions {
+    list-style: none;
+    counter-reset: dir;
+    margin: 0.2rem 0 0.4rem 0;
+    padding-left: 2.1rem;
+}
+
+.directions li {
+    position: relative;
+    margin: 0.25rem 0;
+    counter-increment: dir;
+}
+
+.directions li::before {
+    content: "[" counter(dir) "]";
+    position: absolute;
+    left: -2.1rem;
+}
+
+.contact-line {
+    margin-top: 1rem;
+}
+
+.badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 6px;
+    margin-top: 0.9rem;
+    align-items: center;
+}
+
+.badge-row a {
+    display: inline-flex;
+    text-decoration: none;
+    line-height: 0;
+}
+
+.badge-row img {
+    height: 20px;
+}
+
+/* News ------------------------------------------------------------------- */
+.news {
+    padding-left: 1.35rem;
+}
+
+.news li {
+    margin: 0.3rem 0;
+}
+
+.news .news-date {
+    font-weight: 700;
+}
+
+/* Publication stats box -------------------------------------------------- */
+.outer-box {
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    padding: 4px;
+    background: #ffffff;
+    width: 100%;
+    margin-top: 1.6rem;
+}
+
+.outer-label {
+    color: #111111;
+    margin: 0 0 3px 6px;
+    font-weight: 800;
+}
+
+.inner-row {
+    display: flex;
+    gap: 4px;
+}
+
+.inner-box {
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    padding: 4px 6px;
+    background: var(--accent-soft);
+    flex: 1 1 0;
+}
+
+.inner-box-conf { flex: 3; }
+.inner-box-j    { flex: 3.5; }
+.inner-box-w    { flex: 2.5; }
+
+.inner-label {
+    color: #111111;
+    margin-bottom: 3px;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+.tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+}
+
+.tag,
+.tag-x {
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 0 8px;
+    font-weight: 400;
+    font-size: 0.8em;
+    white-space: nowrap;
+    line-height: 1.6;
+}
+
+.tag   { background: #5b0505; }
+.tag-x { background: var(--accent); }
+
+/* Publications ----------------------------------------------------------- */
+.pub-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.pub-list > li {
+    margin: 0;
+}
+
+.paper {
+    margin: 0.85rem 0;
+    padding-left: 3.1rem;
+    position: relative;
+}
+
+.paper .pub-num {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.paper.no-num {
+    padding-left: 0;
+}
+
+.paper-title {
+    font-weight: 700;
+}
+
+.paper-title a {
+    text-decoration: none;
+}
+
+.paper-title a:hover {
+    text-decoration: underline;
+}
+
+.me {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.paper-summary {
+    color: var(--muted);
+    font-size: 0.93em;
+}
+
+.venue {
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.venue a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.plink {
+    font-weight: 700;
+    color: #58012a;
+}
+
+.plink:hover {
+    color: var(--link-line);
+}
+
+.tag-btn {
+    display: inline-block;
+    color: #ffffff;
+    border: 0;
+    border-radius: 4px;
+    padding: 1px 8px;
+    font-size: 12px;
+    font-family: var(--font);
+    line-height: 1.5;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.t-vlm  { background: #313783; }
+.t-eff  { background: #800b62; }
+.t-med  { background: #650781; }
+.t-nlp  { background: #0b5e3a; }
+.t-ml   { background: #7b3f00; }
+.t-hci  { background: #084f38; }
+.t-note { background: #08144f; }
+
+.review-badge {
+    display: inline;
+    background: #ffd700;
+    color: #000000;
+    border-radius: 8px;
+    padding: 0 5px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.see-all {
+    margin: 1.2rem 0 0.4rem 0;
+    font-weight: 700;
+}
+
+.pub-note {
+    color: var(--muted);
+    font-size: 0.93em;
+}
+
+/* Experience / education lists ------------------------------------------- */
+.exp > li {
+    margin: 0.55rem 0;
+}
+
+.exp > li > p {
+    margin: 0;
+}
+
+.exp .role {
+    font-weight: 700;
+}
+
+.exp .company {
+    font-weight: 700;
+}
+
+.exp .date {
+    color: var(--muted);
+}
+
+.exp ul {
+    margin-top: 0.15rem;
+}
+
+.exp-short > li {
+    margin: 0.25rem 0;
+}
+
+.exp-short p {
+    margin: 0;
+}
+
+/* Contact ---------------------------------------------------------------- */
+.contact-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.contact-list li {
+    margin: 0.3rem 0;
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+}
+
+.contact-list .label {
+    flex: 0 0 6.5rem;
+    font-weight: 700;
+}
+
+.ref-list > li {
+    margin: 0.7rem 0;
+}
+
+.ref-list p {
+    margin: 0;
+}
+
+/* Footer ----------------------------------------------------------------- */
+.footer {
+    margin-top: 4rem;
+    padding: 1.2rem 0 2.5rem 0;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 0.92em;
+}
+
+/* Floating page contents ------------------------------------------------- */
+#page-contents {
+    display: none;
+    position: fixed;
+    top: 50%;
+    right: 24px;
+    transform: translateY(-50%);
+    width: 15%;
+    min-width: 170px;
+    max-width: 250px;
+    background: var(--panel);
+    padding: 10px 12px 6px 14px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    font-size: 14px;
+}
+
+#page-contents h4 {
+    font-size: 15px;
+    color: #444444;
+    margin: 0 0 8px 0;
+}
+
+#page-contents a {
+    display: block;
+    margin-bottom: 7px;
+    color: #333333;
+    text-decoration: none;
+    line-height: 1.3;
+}
+
+#page-contents a:hover {
+    text-decoration: underline;
+}
+
+#page-contents a.active {
+    font-weight: 700;
+    color: var(--accent);
+}
+
+@media (min-width: 1720px) {
+    #page-contents {
+        display: block;
+    }
+}
+
+/* Responsive ------------------------------------------------------------- */
+@media (max-width: 760px) {
+    body {
+        font-size: 16px;
+    }
+
+    .navbar {
+        padding: 28px 16px 16px;
+        align-items: flex-start;
+    }
+
+    .author-name {
+        font-size: 26px;
+    }
+
+    .navbar-ul {
+        gap: 0.2rem 1rem;
+        font-size: 14.5px;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .profile-picture {
+        width: 150px;
+        height: 150px;
+        margin: 0 0 12px 16px;
+    }
+
+    .inner-row {
+        flex-direction: column;
+    }
+
+    .paper {
+        padding-left: 2.7rem;
+    }
+
+    .contact-list li {
+        display: block;
+    }
+
+    .contact-list .label {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-picture {
+        width: 120px;
+        height: 120px;
+    }
+
+    .author-name {
+        font-size: 23px;
+    }
+}
+
+/* Print ------------------------------------------------------------------ */
+@media print {
+    #page-contents {
+        display: none !important;
+    }
+
+    a {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+}
